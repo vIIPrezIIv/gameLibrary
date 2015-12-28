@@ -1,0 +1,98 @@
+body {
+    background-color: #FF130E;
+    font-size: medium;
+    font-family: Arial, "Times New Roman", serif;
+}
+
+td {
+    background-color: white;
+}
+
+.insertGameStyle {
+    margin-left: 10%;
+    margin-right: 78%;
+    border: 2px solid black;
+    padding-left: 33px; 
+    padding-right: 33px; 
+    text-align: center;
+}
+
+.showGamesStyle {
+    margin-left: 10%;
+    margin-right: 78%;
+    margin-top: 2%;
+    border: 2px solid black;
+    padding-left: 30px; 
+    padding-right: 30px;
+    text-align: center;
+}
+
+.returnGameStyle {
+    margin-left: 7%;
+    margin-right: 75%;
+    margin-top: 2%;
+    border: 2px solid black;
+    padding-left: 30px; 
+    padding-right: 30px; 
+    text-align: center;
+}
+
+.insertGamePage {
+    margin-left: 7%;
+    margin-right: 71%;
+    margin-top: 2%;
+    border: 2px solid black;
+    padding-left: 30px; 
+    padding-right: 30px; 
+    text-align: center;
+}
+
+.returnResult {
+    margin-left: 6%;
+    margin-right: 70%;
+    margin-top: 2%;
+    border: 2px solid black;
+    padding-left: 25px; 
+    padding-right: 30px; 
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.returnHome {
+    margin-left: 15.5%;
+    margin-right: 78%;
+}
+
+.returnP {
+    margin-left: 5.5%;
+    margin-right: 5%;
+    border: 2px solid black;
+}
+
+.returnTitle {
+    margin-left: 45%;
+    margin-right: 5%;
+}
+
+.showHome {
+    margin-left: 48%;
+    margin-right: 45%;
+}
+
+.showTable {
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+    text-align: center;
+}
+
+.insertCover {
+    margin-left: 4%;
+    margin-right: 72%;
+    margin-top: 2%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid black;
+    text-align: center;
+}
+
