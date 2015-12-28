@@ -24,9 +24,7 @@ IF (validDate < yearMade) THEN
 
 		INSERT INTO gameName VALUES (NULL, gameNameInsert, yearMade, CURDATE());
 
-		SET gameNameResult = (SELECT gameId 
-							  FROM gameName 
-                              WHERE gameName = gameNameInsert);
+		SET gameNameResult = (SELECT gameId FROM gameName WHERE gameName = gameNameInsert);
 
 		INSERT INTO consolePc VALUES (NULL, gameNameResult, consolePcName);
 
@@ -34,20 +32,20 @@ IF (validDate < yearMade) THEN
         
 	ELSE
 		SET sqlError = TRUE;
-        SELECT "Edition Is Not Valid";
+        	SELECT "Edition Is Not Valid";
 	END IF;
 
 ELSE
 	SET sqlError = TRUE;
-    SELECT "Date Is Not Valid (1970-01-01)";
+	SELECT "Date Is Not Valid (1970-01-01)";
 END IF;
 
 IF sqlError = FALSE THEN
 	COMMIT;
-    SELECT "Success";
+    	SELECT "Success";
 ELSE
 	ROLLBACK;
-    SELECT "Failed";
+    	SELECT "Failed";
 END IF;
 
 END//
@@ -69,26 +67,20 @@ BEGIN
 
 DECLARE errorMsg VARCHAR(65) DEFAULT "Game Doesn't Exist";
 DECLARE successMsg VARCHAR(65) DEFAULT (SELECT CONCAT(l.releaseYear, ":", b.consolePcName, ":", c.edition)
-										FROM gameName l 
-										INNER JOIN consolePc b 
-										ON l.gameId = b.gameId 
-										INNER JOIN special c 
-										ON l.gameId = c.gameId
-										WHERE l.gameName = gameNameInsert);
+					FROM gameName l 
+					INNER JOIN consolePc b 
+					ON l.gameId = b.gameId 
+					INNER JOIN special c 
+					ON l.gameId = c.gameId
+					WHERE l.gameName = gameNameInsert);
 DECLARE result INT;
 
-SET result = (SELECT gameId 
-			  FROM gameName 
-              WHERE gameName = gameNameInsert);
+SET result = (SELECT gameId FROM gameName WHERE gameName = gameNameInsert);
 
 IF (result IS NULL) THEN
-	
     RETURN errorMsg;
-    
 ELSE
-    
     RETURN successMsg;
-    
 END IF;
 
 END//
