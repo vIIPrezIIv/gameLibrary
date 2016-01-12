@@ -1,6 +1,6 @@
 <?php
     
-    if (isset($_GET["searchName"]))
+    if (isset($_GET["searchName"]) && isset($_GET["searchPlatform"]))
     {
         $host = "localhost";
         $user = "root";
@@ -9,14 +9,15 @@
         $connection = mysqli_connect($host, $user, $password, $database) or die("Cannot Connect");
     
         $gameName = $_GET["searchName"];
+        $platForm = $_GET["searchPlatform"];
         
         $titles = "Date Released:  *Plaform:  *Edition:  ";
-        
-        $result = mysqli_prepare($connection, "SELECT returnGame(?)");
-        mysqli_stmt_bind_param($result, 's', $gameName);
+       
+        $result = mysqli_prepare($connection, "SELECT returnGame(?, ?)");
+        mysqli_stmt_bind_param($result, 'ss', $gameName, $platForm);
         mysqli_stmt_execute($result) or die("Query For Game Failed");
         mysqli_stmt_bind_result($result, $finalResult);
-       
+        
         while (mysqli_stmt_fetch($result))
         {   
             $titleResult = explode("*", $titles);
@@ -41,14 +42,13 @@
         mysqli_stmt_bind_param($imageResult, 's', $gameName);
         mysqli_stmt_execute($imageResult) or die("Query For Image Failed");
         mysqli_stmt_bind_result($imageResult, $picture);
-        
+
         while (mysqli_stmt_fetch($imageResult))       
         {
             
             echo '<img height = "200" width = "250" src="data:image;base64,'.$picture.'">';
             
         }
-                
             echo "</div>";
     }
     else
