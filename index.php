@@ -28,6 +28,10 @@
                         <input type ='text' name ="searchName" required ="true" title ="Must enter a game name"/>
                     </p>
                     <p>
+                        <label>Enter Platform</label>
+                        <input type ='text' name ="searchPlatform" required ="true" title ="Must enter a platform"/>
+                    </p>
+                    <p>
                         <input type ="submit" value ="Search"/>
                     </p> 
                 </form>
