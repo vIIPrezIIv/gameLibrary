@@ -11,41 +11,51 @@ BEGIN
 
 DECLARE sqlError TINYINT DEFAULT FALSE;
 DECLARE validDate DATE DEFAULT '1970-01-01';
-DECLARE gameNameResult INT;
+
+DECLARE result INT DEFAULT (SELECT l.gameId 
+							FROM gameName l
+							INNER JOIN consolePc k
+							ON l.gameId = k.gameId
+							WHERE l.gameName = gameNameInsert AND k.consolePcName = consolePcName);
 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
 	SET sqlError = TRUE;
 
 START TRANSACTION;
 
-IF (validDate < yearMade) THEN
+IF (result IS NULL) THEN
 
-	IF (edition = 'Collectors Edition' || edition = 'Special Edition' || edition = 'Deluxe Edition' || edition = 'Standard Edition') THEN
+	IF (validDate < yearMade) THEN
 
-		INSERT INTO gameName VALUES (NULL, gameNameInsert, yearMade, CURDATE());
+		IF (edition = 'Collectors Edition' || edition = 'Special Edition' || edition = 'Deluxe Edition' || edition = 'Standard Edition') THEN
 
-		SET gameNameResult = (SELECT gameId FROM gameName WHERE gameName = gameNameInsert);
+			INSERT INTO gameName VALUES (NULL, gameNameInsert, yearMade, CURDATE());
 
-		INSERT INTO consolePc VALUES (NULL, gameNameResult, consolePcName);
+			INSERT INTO consolePc VALUES (NULL, LAST_INSERT_ID(), consolePcName);
 
-		INSERT INTO special VALUES (NULL, gameNameResult, edition);
+			INSERT INTO special VALUES (NULL, LAST_INSERT_ID(), edition);
         
+		ELSE
+			SET sqlError = TRUE;
+			SELECT "Edition Is Not Valid";
+		END IF;
+
 	ELSE
 		SET sqlError = TRUE;
-        	SELECT "Edition Is Not Valid";
+		SELECT "Date Is Not Valid (1970-01-01)";
 	END IF;
 
 ELSE
 	SET sqlError = TRUE;
-	SELECT "Date Is Not Valid (1970-01-01)";
+    SELECT "Game Is Already Added";
 END IF;
 
 IF sqlError = FALSE THEN
 	COMMIT;
-    	SELECT "Success";
+    SELECT "Success";
 ELSE
 	ROLLBACK;
-    	SELECT "Failed";
+    SELECT "Failed";
 END IF;
 
 END//
@@ -61,26 +71,34 @@ ORDER BY l.gameName ASC;
 
 END//
 
-CREATE FUNCTION returnGame(gameNameInsert VARCHAR(45))
+CREATE FUNCTION returnGame(gameNameInsert VARCHAR(45), platform VARCHAR(45))
 RETURNS VARCHAR(65)
 BEGIN
 
 DECLARE errorMsg VARCHAR(65) DEFAULT "Game Doesn't Exist";
 DECLARE successMsg VARCHAR(65) DEFAULT (SELECT CONCAT(l.releaseYear, ":", b.consolePcName, ":", c.edition)
-					FROM gameName l 
-					INNER JOIN consolePc b 
-					ON l.gameId = b.gameId 
-					INNER JOIN special c 
-					ON l.gameId = c.gameId
-					WHERE l.gameName = gameNameInsert);
-DECLARE result INT;
-
-SET result = (SELECT gameId FROM gameName WHERE gameName = gameNameInsert);
+										FROM gameName l 
+										INNER JOIN consolePc b 
+										ON l.gameId = b.gameId 
+										INNER JOIN special c 
+										ON l.gameId = c.gameId
+										WHERE l.gameName = gameNameInsert
+                                        AND b.consolePcName = platform);
+                                        
+DECLARE result INT DEFAULT (SELECT l.gameId 
+							FROM gameName l
+							INNER JOIN consolePc k
+							ON l.gameId = k.gameId
+							WHERE l.gameName = gameNameInsert AND k.consolePcName = platform);
 
 IF (result IS NULL) THEN
+	
     RETURN errorMsg;
+    
 ELSE
+    
     RETURN successMsg;
+    
 END IF;
 
 END//
