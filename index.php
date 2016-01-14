@@ -33,8 +33,7 @@
 			<hr>
 			<div class='recentlyAdded'>
 				<h2>Recently Added</h2>
-				<div class='recentlyAdded_rst'>
-				</div>
+				<div class='recentlyAdded_rst'></div>
 			</div>
 		</div>
 		<div id='rightCol'>
