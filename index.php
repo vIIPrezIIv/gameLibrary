@@ -38,6 +38,7 @@
 			</div>
 		</div>
 		<div id='rightCol'>
+			<!--
 			<div id='newFeed'>
 				<h1>Game News</h1>
 				<div id='newsContainer'>
@@ -53,6 +54,7 @@
 					</div>
 				</div>
 			</div>
+			-->
 		</div>
 		<!--
 		<div class="showGamesStyle">
