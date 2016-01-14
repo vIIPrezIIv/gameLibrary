@@ -2,12 +2,12 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="gameStyle.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/gameStyle.css" media="screen" />
         <title>insertGame</title>
     </head>
     <body>
         <div class="insertGamePage">
-            <form action ="insertScript.php" method="GET">
+            <form action ="PHP/insertScript.php" method="GET">
                 <p>
                     <label>Game Name</label>
                     <input type ='text' name ="gameName" required ="true" title ="Must enter a game name"/>

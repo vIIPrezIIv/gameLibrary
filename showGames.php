@@ -35,7 +35,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="gameStyle.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/gameStyle.css" media="screen" />
         <title>insertGame</title>
     </head>
     <body>

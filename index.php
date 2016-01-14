@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="gameStyle.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/gameStyle.css" media="screen" />
         <title>gameInterface</title>
     </head>
     <body>
@@ -73,7 +73,7 @@
 		
 		
 		<div class="insertCover">
-			<form action ="insertCover.php" method="POST" enctype="multipart/form-data">
+			<form action ="PHP/insertCover.php" method="POST" enctype="multipart/form-data">
 				<p>
 					<label>Game Name</label>
 					<input type ='text' name ="gameCoverName" required ="true" title ="Must enter a game name for cover"/>
