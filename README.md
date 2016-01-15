@@ -7,5 +7,5 @@ A database for game collections with a browser interface
 - Fixed the ability to added the same game
 - Fixed an issue with not being able to add a game with the same name but different platform
 
-# gameLibrary (1.2.1)
+# gameLibrary (1.3)
 - GUI upgrade
