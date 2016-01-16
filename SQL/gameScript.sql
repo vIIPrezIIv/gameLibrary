@@ -2,6 +2,16 @@ DROP DATABASE IF EXISTS GameLibrary;
 CREATE DATABASE GameLibrary;
 USE GameLibrary;
 
+CREATE TABLE users (
+	userID INT PRIMARY KEY AUTO_INCREMENT,
+	userName VARCHAR(25) UNIQUE,
+	firstName VARCHAR(20),
+	lastName VARCHAR(20),
+	email VARCHAR(320),
+	permission ENUM("ADMIN", "USER", "BANNED"),
+	password VARCHAR(20)
+);
+
 CREATE TABLE gameName (
     gameId INT PRIMARY KEY AUTO_INCREMENT,
     gameName VARCHAR(45),
@@ -37,6 +47,9 @@ CREATE TABLE gameCover (
 );
 
 
+
+INSERT INTO users VALUES ( '\N' , 'Weirdtopia' , 'Graham' , 'Berry' , 'grahamstaveleyberry@gmail.com' , 'ADMIN' , 'NNf4jkdEuqqtZPkR+1gS42teUCTScqJ7zgnIU30St+U=')
+						 ,( '\N' , 'vIIPrezIIv' , 'Real' , 'Ortelli' , 'realortelli@gmail.com' , 'ADMIN' , 'NNf4jkdEuqqtZPkR+1gS42teUCTScqJ7zgnIU30St+U=');
 	
 
 

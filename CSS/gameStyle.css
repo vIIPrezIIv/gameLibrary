@@ -111,20 +111,29 @@ td {
 a{
 	color: DarkSlateGray;
 	text-decoration: none;
+	
 }
 
 a:hover{
 	color: #222222;
 }
 
-input{
-	margin-top: 5px;
-	margin-bottom: 10px;
+a.login_txt{
+	color:white;
+	
 }
+
 
 tr , td{
 	border: 1px solid black;
 	background-color: transparent;
+}
+
+h3{
+	margin-left:auto;
+	margin-right:auto;
+	width: 50%;
+	text-align:center;
 }
 /*
 	Content Styles
@@ -157,10 +166,47 @@ tr , td{
 	margin: 10px;
 }
 
+#login_Container{
+	
+	width: 20%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #C7C7CC;
+	border: 2px ridge black;
+	min-height: 15%;
+	margin-top: 10%;
+	padding: 15px;
+}
+
 .gameTitle{
 	text-align:left;
 	text-indent: 25%;
 	
+}
+
+.error{
+	color:red;
+	font-size: 12px;
+	padding-left: 5%;
+}
+
+.login{
+	float:right;
+	margin-right: 10%;
+	margin-top: 7px;
+	font-size: 17px;
+	cursor: pointer;
+	cursor: pointer;
+}
+
+.login:hover{
+	font-size: 20px;
+	margin-top: 3px;
+}
+
+.userProfile{
+	float: right;
+	margin-right: 40px;
 }
 
 #newFeed{
@@ -279,9 +325,18 @@ input[type="submit"].largeSubmit{
 p{
 	margin-top: 50px;
 }
-p input[type='text']{
+
+p input[type='text'] , input[type='password']{
 	float: right;
 }
+
+form > p {
+	margin-top: 10px;
+}
+form > p > label{
+	margin-top: 10px;
+}
+
 .insertGamePage h2{
 	text-indent: 10%;
 }

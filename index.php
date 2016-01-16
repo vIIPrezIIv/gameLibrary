@@ -1,3 +1,13 @@
+<?php
+	SESSION_START();
+	INCLUDE_ONCE 'php/sql_cls.php';
+	$ADMIN = FALSE;
+	IF (ISSET($_SESSION["User"])){
+		$sql = new sql_cls;
+		IF($sql->getUserPrivilage($_SESSION["User"]) == "ADMIN")
+			$ADMIN = TRUE;
+	}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,13 +18,41 @@
     <body>
 		<div class='pageHeader'>
 			Game Library
+			
+			<div class='login'>
+				<?php
+				
+					ECHO "<a class='login_txt' href='login.php'>";
+					IF (!ISSET($_SESSION["User"]))
+						ECHO "Log In";
+					ELSE
+						ECHO "Log Off";
+					ECHO "</a>";
+					
+				?>
+			</div>
+			<?php
+				ECHO "<span class='userProfile'>";
+				IF (ISSET($_SESSION["User"])){
+					$name = $sql->getUserName($_SESSION["User"]);
+					ECHO "<span> Hello ".$name["FirstName"]." ".$name["LastName"]."  </span>";
+				}
+				ECHO "</span>";
+			?>
+			
 		</div>
 		<div id='navBar'>
 			<div id='btnContainer'>
-				<div class='menuBtn'><a href='insertGame.php' class='menuSel'>Add Game</a></div>
+				
 				<div class='menuBtn'><a href='showGames.php' class='menuSel'>Show Games</a></div>
 				<div class='menuBtn'><a href='returnGame.php' class='menuSel'>Search Games</a></div>
-				<div class='menuBtn'><a href='' class='menuSel'>Edit Game</a></div>
+				<?php
+					IF($ADMIN){
+						ECHO "<div class='menuBtn'><a href='insertGame.php' class='menuSel'>Add Game</a></div>";
+						ECHO "<div class='menuBtn'><a href='' class='menuSel'>Edit Game</a></div>";
+					}
+				?>	
+				
 				<!--<div class='menuBtn'>Add Game Cover</div>-->
 			</div>
 		</div>
