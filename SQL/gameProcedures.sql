@@ -3,6 +3,7 @@ USE GameLibrary;
 DROP PROCEDURE IF EXISTS insertGame;
 DROP PROCEDURE IF EXISTS selectGame;
 DROP FUNCTION IF EXISTS returnGame;
+DROP PROCEDURE IF EXISTS removeGame;
 
 DELIMITER //
 
@@ -102,6 +103,45 @@ ELSE
 END IF;
 
 END//
+
+CREATE PROCEDURE removeGame(gameNameRemove VARCHAR(45), platform VARCHAR(45))
+BEGIN
+
+DECLARE sqlError TINYINT DEFAULT FALSE;
+DECLARE result INT DEFAULT (SELECT l.gameId 
+							FROM gameName l
+							INNER JOIN consolePc k
+							ON l.gameId = k.gameId
+							WHERE l.gameName = gameNameRemove AND k.consolePcName = platform);
+
+DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+	SET sqlError = TRUE;
+    
+START TRANSACTION;
+
+IF (result IS NULL) THEN
+
+	SET sqlError = TRUE;
+	SELECT "Game Doesn't Exist";
+
+ELSE
+    
+    DELETE FROM gameCover WHERE gameId = result;
+    DELETE FROM special WHERE gameId = result;
+    DELETE FROM consolePc WHERE gameId = result;
+	DELETE FROM gameName WHERE gameId = result;
+
+END IF;
+
+IF sqlError = FALSE THEN
+	COMMIT;
+    SELECT "Success";
+ELSE
+	ROLLBACK;
+    SELECT "Failed";
+END IF;
+
+END //
 
 DELIMITER ;
 
