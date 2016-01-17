@@ -9,7 +9,7 @@ CREATE TABLE users (
 	lastName VARCHAR(20),
 	email VARCHAR(320),
 	permission ENUM("ADMIN", "USER", "BANNED"),
-	password VARCHAR(20)
+	password VARCHAR(40)
 );
 
 CREATE TABLE gameName (

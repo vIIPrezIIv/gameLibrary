@@ -14,6 +14,8 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/gameStyle.css" media="screen" />
         <title>gameInterface</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="js/profile.js"></script>
     </head>
     <body>
 		<div class='pageHeader'>
@@ -75,55 +77,42 @@
 			</div>
 		</div>
 		<div id='rightCol'>
-			<!--
-			<div id='newFeed'>
-				<h1>Game News</h1>
-				<div id='newsContainer'>
-				</div>
-			</div>
-			<div id='featuredGame'>
-				<h1>Featured Game</h1>
-				<hr>
-				<h3 class='gameTitle'>Insert Game Name Here</h3>
-				<div class='quickInfo'>
-					<div class='imgHolder'>
+			<h2>Profile</h2>
+			<div>
+				<?php
+					$columns  = 
+						array ( 
+							"User Name" 		=> "userName",
+							"First Name" 		=> "firstName",
+							"Last Name" 		=> "lastName" ,
+							"Email Address" 	=> "email" ,
+							"User Permisssion" 	=> "permission"
+						);
 						
-					</div>
-				</div>
+					$i = 0;
+					$colomn_str = "";
+					foreach( $columns AS $keys => $val){
+						if($i != 0)
+							$colomn_str .= " ,".$val." AS '".$keys."' ";
+						else
+							$colomn_str .= $val." AS '".$keys."' ";
+						$i++;
+					}
+						
+					
+					$data = mysqli_fetch_assoc($sql->query("
+						SELECT ".$colomn_str."
+						FROM users
+						WHERE userID = ".$_SESSION["User"]."
+					"));
+					
+					foreach($data AS $key => $val){
+						echo "<div class='column_line'><span class='value_lbl'>".$key.":</span><span class='value_val'>".$val."<input type='checkbox'  class='editVal'/></span></div><br/>";
+					}
+					
+				?>
 			</div>
-			-->
 		</div>
-		<!--
-		<div class="showGamesStyle">
-				
-				<form action ="showGames.php" method="GET">
-					<p>
-						<input type ="submit" value ="Show Games"/>
-					</p> 
-				</form>
-			</div>
-		<div class="insertGameStyle">
-				<form action ="insertGame.php" method="GET">
-					<p>
-						<input type ="submit" value ="Add a Game"/>
-					</p> 
-				</form>
-			</div>
 		
-		
-		<div class="insertCover">
-			<form action ="PHP/insertCover.php" method="POST" enctype="multipart/form-data">
-				<p>
-					<label>Game Name</label>
-					<input type ='text' name ="gameCoverName" required ="true" title ="Must enter a game name for cover"/>
-				</p>
-				<p>
-					<input type="hidden" name ="MAX_FILE_SIZE" value="2000000">
-					<input name="userfile" type ="file"> 
-					<input name="upload" type ="submit" value="Upload">
-				</p>
-			</form>
-		</div>
-		-->
     </body>
 </html>
