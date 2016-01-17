@@ -1,3 +1,51 @@
+<!--<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="gameStyle.css" media="screen" />
+        <title>insertGame</title>
+    </head>
+    <body>
+        <div class="insertGamePage">
+            <form action ="insertScript.php" method="POST" enctype="multipart/form-data">
+                <p>
+                    <label>Game Name</label>
+                    <input type ='text' name ="gameName" required ="true" title ="Must enter a game name"/>
+                </p>
+                <p>
+                    <label>Release Date (2001-01-01)</label>
+                    <input type ='text' name ="releaseDate" required ="true" title ="Must enter a valid date: (2001-01-01)" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"/>
+                </p>
+                <p>
+                    <label>Platform (Xbox 360, PS3, etc...)</label>
+                    <input type ='text' name ="platform" required ="true" title ="Must enter a platform"/>
+                </p>
+                <p>
+                    <label>Edition (Special Edition, Collectors Edition, Deluxe Edition, Standard Edition)</label>
+                    <input type ='text' name ="edition" required ="true" title ="Must enter a proper edition"/>
+                </p>-->
+                <!--<p>
+                    <label>Game Name</label>
+                    <input type ='text' name ="gameCoverName" required ="true" title ="Must enter a game name for cover"/>
+                </p>-->
+                <!--<p>
+                    <input type="hidden" name ="MAX_FILE_SIZE" value="2000000">
+                    <input name="userfile" type ="file"> 
+                    <input name="upload" type ="submit" value="Add">
+                </p>-->       
+                <!--<p>
+                    <input type ="submit" value ="Add"/>
+                </p>-->
+            <!--</form>
+            <form action ="index.php" method="GET">
+                <p>
+                    <input type ="submit" value ="Home"/>
+                </p> 
+            </form>
+        </div>
+    </body>
+</html>-->
+            
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,7 +86,7 @@
 		<div id='rightCol'>
 			<div class="insertGamePage">
 				<h2> Adding Game to Database </h2>
-				<form action ="PHP/insertScript.php" method="GET">
+				<form action ="PHP/insertScript.php" method="POST" enctype="multipart/form-data">
 					<p>
 						<label>Game Name</label>
 						<input type ='text' name ="gameName" required ="true" title ="Must enter a game name"/>
@@ -55,13 +103,20 @@
 						<label>Edition* </label>
 						<input type ='text' name ="edition" required ="true" title ="Must enter a proper edition"/>
 					</p>
+                                        <p>
+                                                <input type="hidden" name ="MAX_FILE_SIZE" value="2000000">
+                                                <input name="userfile" type ="file"> 
+                                                <!--<input name="upload" type ="submit" value="Add">-->
+                                        </p>
 					<p>
-						<input type ="submit" class="largeSubmit" value ="Add"/>
-					</p> 
+						<input type ="submit" name="upload" class="largeSubmit" value ="Add"/>
+					</p>
 					<code>* (Special Edition, Collectors Edition, Deluxe Edition, Standard Edition)</code>
 				</form>
 			</div>
 		</div>
     </body>
 </html>
+
+
 
