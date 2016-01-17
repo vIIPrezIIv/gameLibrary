@@ -113,6 +113,8 @@ DECLARE result INT DEFAULT (SELECT l.gameId
 							INNER JOIN consolePc k
 							ON l.gameId = k.gameId
 							WHERE l.gameName = gameNameRemove AND k.consolePcName = platform);
+						
+DECLARE coverResult INT DEFAULT (SELECT gameId FROM gameCover WHERE gameId = result);
 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
 	SET sqlError = TRUE;
@@ -126,9 +128,18 @@ IF (result IS NULL) THEN
 
 ELSE
     
-    DELETE FROM gameCover WHERE gameId = result;
-    DELETE FROM special WHERE gameId = result;
-    DELETE FROM consolePc WHERE gameId = result;
+    IF (coverResult IS NULL) THEN
+		
+        SELECT "Game Doesn't Have a Cover";
+        
+	ELSE
+   
+		DELETE FROM gameCover WHERE gameId = result;
+        
+	END IF;
+    
+	DELETE FROM special WHERE gameId = result;
+	DELETE FROM consolePc WHERE gameId = result;
 	DELETE FROM gameName WHERE gameId = result;
 
 END IF;
