@@ -82,11 +82,8 @@
 				<?php
 					$columns  = 
 						array ( 
-							"User Name" 		=> "userName",
 							"First Name" 		=> "firstName",
 							"Last Name" 		=> "lastName" ,
-							"Email Address" 	=> "email" ,
-							"User Permisssion" 	=> "permission"
 						);
 						
 					$i = 0;
@@ -107,7 +104,7 @@
 					"));
 					
 					foreach($data AS $key => $val){
-						echo "<div class='column_line'><span class='value_lbl'>".$key.":</span><span class='value_val'>".$val."<input type='checkbox'  class='editVal'/></span></div><br/>";
+						echo "<div class='column_line'><span class='value_lbl'>".$key.":</span><span class='value_val'><span>".$val."</span><input type='checkbox'  class='editVal'/></span></div><br/>";
 					}
 					
 				?>

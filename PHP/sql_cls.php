@@ -16,6 +16,12 @@
 			MYSQLI_CLOSE($this->conn);
 		}
 		
+		FUNCTION UPDATE( $tbl , $feild , $value , $where){
+			$query = 
+			"UPDATE ".$tbl." SET ".$feild." = '".$value."' WHERE ".$where;
+			$this->query($query);
+		}
+		
 		FUNCTION query( $query ){
 			$this->connect();
 			$result = MYSQLI_QUERY($this->conn, $query) ;//or die("Query For Table Failed");
@@ -33,7 +39,7 @@
 			return $data["permission"];
 		}
 		
-		PUBLIC FUNCTION loginCheck( $userName , $password){
+		FUNCTION loginCheck( $userName , $password){
 			$results = $this->query("
 				SELECT 	userID
 					FROM 	

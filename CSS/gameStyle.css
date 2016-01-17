@@ -281,6 +281,19 @@ input[type="submit"].largeSubmit{
 	cursor: pointer;
 }
 
+inuput[type="checkbox"]{
+	width: 5px;
+	height: 10px;
+}
+
+input[type="checkbox"]:after{
+	
+	content: url("../img/pencil.png");
+	background-size: 5px 10px;
+	cursor: pointer;
+
+}
+
 .menuBtn{
 	
 	
