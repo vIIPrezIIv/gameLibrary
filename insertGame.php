@@ -86,7 +86,7 @@
 		<div id='rightCol'>
 			<div class="insertGamePage">
 				<h2> Adding Game to Database </h2>
-				<form action ="PHP/insertScript.php" method="POST" enctype="multipart/form-data">
+				<form action ="insertScript.php" method="POST" enctype="multipart/form-data">
 					<p>
 						<label>Game Name</label>
 						<input type ='text' name ="gameName" required ="true" title ="Must enter a game name"/>
