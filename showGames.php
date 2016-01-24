@@ -7,7 +7,7 @@
 		IF($sql->getUserPrivilage($_SESSION["User"]) == "ADMIN")
 			$ADMIN = TRUE;
 	}
-	$result = $sql->query("Call selectGame()");
+	$result = $sql->query("Call selectGame( 0 , 10)");
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
         <link rel="stylesheet" type="text/css" href="css/gameStyle.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/gameSearch.css" media="screen" />
         <title>Game List</title>
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     </head>
     <body>
 		<div class='pageHeader'>
@@ -79,10 +79,46 @@
 				}
 				echo "</span></table>";
 			?>
+			<div class='pageChanger_div'>
+				<div class='pageOptions'>
+					<span class='page_sel_btn prev'>
+						Prev
+					</span>
+					<span class='page_sel'>
+						<span class='page_at'>1</span>/
+					<?php
+						$result = $sql->query("
+							SELECT count(l.gameName) AS num_games
+							FROM gameName l
+							INNER JOIN consolePc b
+							ON l.gameId = b.gameId
+						");
+						$numOfRecordsPerPage = 10;
+						$pages = ceil(intval(mysqli_fetch_assoc($result)["num_games"]) / $numOfRecordsPerPage);
+						ECHO $pages;
+						ECHO "
+							<script>
+								var data = {
+									'Page' : 1,
+									'Page Size' : ".$numOfRecordsPerPage.",
+									'Number Of Pages' : ".$pages.",
+									'Order By' : {
+										'Feild' : 'Game Name',
+										'Order' : 'ASC'
+									}
+								}
+							</script>
+						"
+					?>
+					</span>
+					<span class='page_sel_btn next'>
+						Next
+					</span>
+				</div>
+			</div>
 		</div>
     </body>
 	<footer>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src="js/results.js"></script>
 	</footer>
 </html>

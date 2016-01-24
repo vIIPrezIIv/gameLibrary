@@ -61,14 +61,15 @@ END IF;
 
 END//
 
-CREATE PROCEDURE selectGame()
+CREATE PROCEDURE selectGame( skip_rows INT(5) , limit_rows INT(5) )
 BEGIN
 
 SELECT l.gameName, b.consolePcName
 FROM gameName l
 INNER JOIN consolePc b
 ON l.gameId = b.gameId
-ORDER BY l.gameName ASC;
+ORDER BY l.gameName ASC
+LIMIT skip_rows , limit_rows;
 
 END//
 

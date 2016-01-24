@@ -421,6 +421,33 @@ form > p > label{
 	min-width: 60%;
 }
 
+.pageChanger_div{
+	
+    margin-left: auto;
+    margin-right: auto;
+	min-width: 60%;
+	width: 250px;
+}
+
+.pageOptions > span{
+	
+    margin-left: 5px;
+	margin-right: 5px;
+	
+}
+
+.page_sel_btn{
+	cursor: pointer;
+	
+}
+
+.pageOptions{
+	margin-left:auto;
+	margin-right:auto;
+	width: 350px;
+	text-align:center;
+}
+
 .insertCover {
     margin-left: 4%;
     margin-right: 72%;
