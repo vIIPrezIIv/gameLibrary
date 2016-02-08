@@ -2,6 +2,12 @@
 /*
 	Main Divs
 */
+
+.page_at{
+	width: 20px;
+	margin-right: 5px;
+}
+
 .pageHeader{
 	
 	height: 30px;

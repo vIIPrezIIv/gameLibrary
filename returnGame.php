@@ -55,7 +55,7 @@
 				   
 					$result = mysqli_prepare($connection, "SELECT returnGame(?, ?)");
 					mysqli_stmt_bind_param($result, 'ss', $gameName, $platForm);
-					mysqli_stmt_execute($result) or die("Query For Game Failed");
+					mysqli_stmt_execute($result);// or die("Query For Game Failed");
 					mysqli_stmt_bind_result($result, $finalResult);
 					
 					while (mysqli_stmt_fetch($result))

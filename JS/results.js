@@ -26,9 +26,13 @@ function entityForSymbolInContainer(selector) {
     return "&#x" + codeHex + ";";
 }
 
-
-
 $('.pageOptions').data( "pageChg" , data);
+
+$('.page_at').change(function(){
+	var data = $('.pageOptions').data("pageChg");
+	data.Page = $(this).val();
+	callForPage( data );
+});
 
 
 $('.next').click(function(){
@@ -56,12 +60,24 @@ function callForPage( data ){
 		url: "php/retrieveGames.php",
 		data: data
 	}).done(function( msg ) {
+		console.log(msg);
 		$('.page_at').text($('.pageOptions').data("pageChg").Page);
 		$('.showTable').find(".feild_find").remove();
 		$(msg).appendTo('.showTable');
-		
 	});
 }
 
-
+$('#platform_typ').change(function(){
+	
+	$('.pageOptions').data("pageChg")["Search_restrictions"]["Platform"] = $(this).val();
+	callForPage( data );
+	
+	$.ajax({
+		method: "POST",
+		url: "php/getPageCount.php",
+		data: data
+	}).done(function( msg ) {
+		$('.max_pg').text(msg);
+	});
+});
 
